@@ -1,0 +1,7 @@
+Image Understanding model
+Qwen/Qwen3-VL-2B-Instruct
+Official checkpoint: https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct
+Revision: 89644892e4d85e24eaac8bacfd4f463576704203
+License: Apache License 2.0; see LICENSE-UNDERSTANDING-MODEL.txt
+The bundled model is compiled into TensorRT-RTX BF16 vision, prefill and decode engines.
+ModelConnect provides the runtime integration; underlying model ownership is unchanged.

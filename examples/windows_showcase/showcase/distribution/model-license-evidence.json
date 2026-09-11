@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "method": "Official immutable model-card raw URLs retrieved over HTTPS; hashes cover received UTF-8 bytes. Only license declarations are retained, not the full model cards.",
+  "records": [
+    {
+      "id": "asr",
+      "url": "https://huggingface.co/openai/whisper-small/raw/973afd24965f72e36ca33b3055d56a652f456b4d/README.md",
+      "retrievedAt": "2026-09-11T18:58:53.1497108Z",
+      "bytes": 20153,
+      "sha256": "967fa44eefe5d3436e040b0f171fc54da67aad96923bae10af37dac9be5bb6b0",
+      "licenseLines": [
+        "license: apache-2.0"
+      ]
+    },
+    {
+      "id": "text",
+      "url": "https://huggingface.co/Qwen/Qwen3-4B/raw/1cfa9a7208912126459214e8b04321603b3df60c/README.md",
+      "retrievedAt": "2026-09-11T18:58:53.3009632Z",
+      "bytes": 16857,
+      "sha256": "71add1cd091c309b1cb1a6b943f2476eb2b004124b3bd1d32dcd0b24cc1abc47",
+      "licenseLines": [
+        "license: apache-2.0",
+        "license_link: https://huggingface.co/Qwen/Qwen3-4B/blob/main/LICENSE"
+      ]
+    },
+    {
+      "id": "embedding",
+      "url": "https://huggingface.co/intfloat/multilingual-e5-small/raw/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md",
+      "retrievedAt": "2026-09-11T18:58:53.4716836Z",
+      "bytes": 497538,
+      "sha256": "0038de97aee16258cecbad7ffda4b4febd6953e747a00e0ddbc8e6ed241e9c1c",
+      "licenseLines": [
+        "license: mit"
+      ]
+    },
+    {
+      "id": "vision",
+      "url": "https://huggingface.co/facebook/sam-vit-base/raw/70c1a07f894ebb5b307fd9eaaee97b9dfc16068f/README.md",
+      "retrievedAt": "2026-09-11T18:58:53.7793008Z",
+      "bytes": 6727,
+      "sha256": "7a8579105233ff1e8fdc6c8387e102e88458e94c873463f640c416de01c921dd",
+      "licenseLines": [
+        "license: apache-2.0"
+      ]
+    },
+    {
+      "id": "understanding",
+      "url": "https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct/raw/89644892e4d85e24eaac8bacfd4f463576704203/README.md",
+      "retrievedAt": "2026-09-11T18:58:53.9058562Z",
+      "bytes": 7136,
+      "sha256": "5fc5be1ca9a3910399bd6239ee5086ab5d82a2a59c5d2b00e887a8835cc110e4",
+      "licenseLines": [
+        "license: apache-2.0"
+      ]
+    },
+    {
+      "id": "geometry",
+      "url": "https://huggingface.co/Ruicheng/moge-2-vitl/raw/39c4d5e957afe587e04eec59dc2bcc3be5ecd968/README.md",
+      "retrievedAt": "2026-09-11T18:58:54.0286486Z",
+      "bytes": 24,
+      "sha256": "d8d7a46d41a1a37fe4f0a5f637bf55c649310185329127d8a2204632e480be17",
+      "licenseLines": [
+        "license: mit\r"
+      ]
+    },
+    {
+      "id": "voice",
+      "url": "https://huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B/raw/359ada7b1c60851e40ff08065f9b0340244f27e0/README.md",
+      "retrievedAt": "2026-09-11T18:58:54.1464553Z",
+      "bytes": 20723,
+      "sha256": "ab29d78baa5779df77db33649cafd1196645cdfba49d3bdf32e6ba60d2d23781",
+      "licenseLines": [
+        "license: openmdw-1.1",
+        "GOVERNING TERMS:  The use of this model is governed by the [OpenMDW License Agreement, version 1.1](https://github.com/OpenMDW/OpenMDW/blob/main/1.1/LICENSE.OpenMDW-1.1)."
+      ]
+    },
+    {
+      "id": "voice-tokenizer",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2/raw/6533e8de2c68e4536bf7c411d7a3ce5734111476/README.md",
+      "retrievedAt": "2026-09-11T18:58:54.2793464Z",
+      "bytes": 47338,
+      "sha256": "626593b2bdc0f473e2870d0f5e478d63348e53137c4e22f3fca3557234541042",
+      "licenseLines": [
+        "license: other",
+        "license_name: nvidia-open-model-license",
+        "license_link: >-",
+        "Governing Terms: Use of this model is governed by the [NVIDIA Open Model License Agreement](https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-open-model-license/)."
+      ]
+    }
+  ]
+}

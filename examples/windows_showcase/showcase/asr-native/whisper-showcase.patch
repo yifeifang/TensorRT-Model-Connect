@@ -1,0 +1,106 @@
+--- a/families/whisper/runtime/CMakeLists.txt
++++ b/families/whisper/runtime/CMakeLists.txt
+@@ -28,7 +28,7 @@
+   ${CMAKE_DL_LIBS}
+ )
+ target_compile_options(trtmc_model_whisper PRIVATE
+-  "$<$<COMPILE_LANGUAGE:CXX>:-Wall;-Wextra;-Wpedantic>"
++  "$<$<COMPILE_LANGUAGE:CXX>:${TRTMC_CXX_WARNINGS}>"
+   "$<$<COMPILE_LANGUAGE:CUDA>:-Wall;-Wextra>"
+ )
+ set_target_properties(trtmc_model_whisper PROPERTIES
+@@ -38,4 +38,6 @@
+ )
+ install(TARGETS trtmc_model_whisper
+   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
++  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+ )
+--- a/families/whisper/runtime/distributed_runtime.cpp
++++ b/families/whisper/runtime/distributed_runtime.cpp
+@@ -5,6 +5,18 @@
+ 
+ #include "families/whisper/runtime/distributed_runtime.h"
+ 
++#ifdef _WIN32
++#include <stdexcept>
++namespace trtmc::whisper {
++DistributedRuntimeGroup initialize_tensor_parallel_group(int tp_size) {
++    if (tp_size > 1)
++        throw std::runtime_error("Whisper tensor parallel execution requires NCCL on Linux");
++    DistributedRuntimeGroup group;
++    group.tp_size = tp_size;
++    return group;
++}
++} // namespace trtmc::whisper
++#else
+ #include <chrono>
+ #include <cstdlib>
+ #include <cuda_runtime_api.h>
+@@ -203,3 +215,4 @@
+ }
+ 
+ } // namespace trtmc::whisper
++#endif
+--- a/families/whisper/runtime/pipeline.cpp
++++ b/families/whisper/runtime/pipeline.cpp
+@@ -16,6 +16,7 @@
+ #include "plugin_helpers.h"
+ 
+ #include <iostream>
++#include <chrono>
+ #include <stdexcept>
+ #include <vector>
+ 
+@@ -87,6 +88,13 @@
+                                        const TranscriptionConfig& config) {
+     const int32_t max_new_tokens = config.max_output_tokens;
+     const int32_t input_sample_rate = config.input_sample_rate;
++    if (audio_data == nullptr || num_samples <= 0 || max_new_tokens <= 0)
++        throw std::invalid_argument("Whisper requires audio and a positive output limit");
++    if (config.timestamps)
++        throw std::invalid_argument("Whisper runtime does not expose timestamp decoding");
++    if (config.beam_size != 1)
++        throw std::invalid_argument("Whisper runtime supports greedy decoding only");
++    const auto started = std::chrono::steady_clock::now();
+ 
+     // Step 0: Resample if needed
+     const float* samples_ptr = audio_data;
+@@ -113,6 +121,7 @@
+         return TextResult{"[mel extraction failed]", {}};
+     }
+ 
++    const auto features_ready = std::chrono::steady_clock::now();
+     // Step 2: Run encoder
+     std::cerr << "[whisper] Running encoder ..." << std::endl;
+     run_encoder(mel.data.data(), mel.n_mels, mel.n_frames);
+@@ -132,11 +141,29 @@
+ 
+     // Step 4: Run decoder
+     std::vector<int32_t> initial_tokens = make_whisper_initial_decoder_tokens(whisper_config_);
++    // Read checkpoint token IDs instead of retaining the bundle's English-only
++    // default when callers explicitly request another source language.
++    if (!config.source_language.empty()) {
++        if (!tokenizer_ || initial_tokens.size() != 4)
++            throw std::invalid_argument("Whisper language selection requires a multilingual four-token prefix");
++        const auto language_id = tokenizer_->id_for_token("<|" + config.source_language + "|>");
++        const auto task_id = tokenizer_->id_for_token(config.task == TranscriptionTask::kTranslate
++            ? "<|translate|>" : "<|transcribe|>");
++        if (language_id < 0 || task_id < 0)
++            throw std::invalid_argument("Whisper checkpoint does not support the requested language or task");
++        initial_tokens[1] = language_id;
++        initial_tokens[2] = task_id;
++    }
++    const auto encoder_ready = std::chrono::steady_clock::now();
+     std::cerr << "[whisper] Running decoder ..." << std::endl;
+     auto output_ids = run_decoder(initial_tokens, max_new_tokens);
++    const auto decoder_ready = std::chrono::steady_clock::now();
+ 
+     // Step 5: Decode token IDs
+     TextResult out;
++    out.setup_ms = std::chrono::duration<double, std::milli>(features_ready - started).count();
++    out.prefill_ms = std::chrono::duration<double, std::milli>(encoder_ready - features_ready).count();
++    out.decode_ms = std::chrono::duration<double, std::milli>(decoder_ready - encoder_ready).count();
+     out.token_ids = std::move(output_ids);
+     if (tokenizer_ && !out.token_ids.empty()) {
+         out.text = tokenizer_->decode(out.token_ids);

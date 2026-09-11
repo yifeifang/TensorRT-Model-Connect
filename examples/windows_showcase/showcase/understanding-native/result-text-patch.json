@@ -1,0 +1,6 @@
+{
+  "file": "families/qwen_vl/runtime/pipeline.cpp",
+  "beforeSha256": "f75ae7eb1a71ba9b74c2c3a815e89343bc359f8685eb1526258b90229937c6e8",
+  "afterSha256": "7b77a9ec309305e1ce6f1e7cfef15b8bfeb0bab57c6e8f1abc44dec1b35dcba2",
+  "reason": "Decode generated token IDs before moving the vector into TextResult; MSVC otherwise yielded empty text for correct generated tokens."
+}

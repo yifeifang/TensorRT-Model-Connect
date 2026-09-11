@@ -1,0 +1,126 @@
+{
+  "repository": "https://github.com/yifeif-nv/TensorRT-Model-Connect-fork.git",
+  "revision": "7458623963a038fa1ae1f1bac28eee6a5c792514",
+  "files": [
+    {
+      "path": "CMakeLists.txt",
+      "beforeSha256": "c45ec5f07e85e981bf1f1cfbe593879afec48744c061788faf2d38eb3baac7fe",
+      "afterSha256": "7eeb03c437a885fb10a263a437d05aa19272747d9bbfcc3d51a2978c98081b63",
+      "patch": "CMakeLists.txt.patch"
+    },
+    {
+      "path": "core/runtime/bundle/bundle_format.cpp",
+      "beforeSha256": "d409b4dc7360a605bb8dc243777dc9647e32f96668b0a28a1993dde309f0773a",
+      "afterSha256": "e790034ea1e6b84247315c70200b08ccc9f47066d9d138a577c8c6f0a015d020",
+      "patch": "core__runtime__bundle__bundle_format.cpp.patch"
+    },
+    {
+      "path": "core/runtime/loader/family_loader.cpp",
+      "beforeSha256": "f804d2612d243cd6b7c683ac76761bdd1c413d55b784ccd700e0f7c9e450d3a0",
+      "afterSha256": "3e2f6637258ad33d6a7ca852c43613219a3176cf1f3d0a9227e7ad478a7b5fb0",
+      "patch": "core__runtime__loader__family_loader.cpp.patch"
+    },
+    {
+      "path": "core/runtime/tensorrt/rtx_backend.cpp",
+      "beforeSha256": "7afed7a51aa3a6ff027bc07c7b4b08fa369208c11ef2b058dd9f4a46ecc40df3",
+      "afterSha256": "21cf3d38ff32c82681afa66f070c81e033a303eea3b0633c2d4bfa8cd4fd1068",
+      "patch": "core__runtime__tensorrt__rtx_backend.cpp.patch"
+    },
+    {
+      "path": "core/runtime/tests/test_bundle_format_v1.cpp",
+      "beforeSha256": "20dbb00c88a7691bdbd094d6849a0c8c2ef9d8285143d69d43040dfb64aa5a25",
+      "afterSha256": "14ff44ce88d2ef361ce7470fff5ac9cb9e34807f3341724dcb0338f9c54486bc",
+      "patch": "core__runtime__tests__test_bundle_format_v1.cpp.patch"
+    },
+    {
+      "path": "core/runtime/tests/test_family_loader.cpp",
+      "beforeSha256": "b25bffcf55d3cf26a72f8f2f9f9dbcede796a90ae8c44374d64d8d7504047cde",
+      "afterSha256": "1772c77aa1334a4fc028ec19ef499c474ea8b9c15afcd0fefcd3efccb10a4f5b",
+      "patch": "core__runtime__tests__test_family_loader.cpp.patch"
+    },
+    {
+      "path": "families/moge/model.py",
+      "beforeSha256": "87ebd3020eeb7db8717e5c4458cf058876f4fdfc6a136e408c7a1976a7fa5dfa",
+      "afterSha256": "67c1199e5e2d7c8f3d96a3265d834668a4321ab5674728c17b4577666a4489fa",
+      "patch": "families__moge__model.py.patch"
+    },
+    {
+      "path": "families/nemotron_voicechat/model.py",
+      "beforeSha256": "74331c5ff92d20e5c09fd3ecaf1358955d850249b4ef095e83f231cb92bbe00e",
+      "afterSha256": "2e864b15c91aa12559c15d129ee6ceee90c4ad6b6b35a34fabb81ef588d781c7",
+      "patch": "families__nemotron_voicechat__model.py.patch"
+    },
+    {
+      "path": "families/nemotron_voicechat/runtime/CMakeLists.txt",
+      "beforeSha256": "ef82d69affaffeef0db095c4754f973657d2390247641b5338d14e7d682becfe",
+      "afterSha256": "1ea5927dce21bd49a474b6f4cc474df6a7507dbfde77aa39359bb6db60ecad5d",
+      "patch": "families__nemotron_voicechat__runtime__CMakeLists.txt.patch"
+    },
+    {
+      "path": "families/nemotron_voicechat/tests/test_build_policy.py",
+      "beforeSha256": "24bd910e3546dc535f0ac7bab3f78b962b72ba9f93e0e5834e4607d3baec4dc4",
+      "afterSha256": "723c8ac44b11998aacd0687ecb41fe469392c450b5aec897901f93ede628fa8e",
+      "patch": "families__nemotron_voicechat__tests__test_build_policy.py.patch"
+    },
+    {
+      "path": "families/qwen/runtime/CMakeLists.txt",
+      "beforeSha256": "a60e2c72dcc1b5726bc6a212338763fad1c5bcbd5f99728a925fb37bbd103215",
+      "afterSha256": "043f1856f31aa89f9c75ff6b3150006a964c82f6aa7d98335d3b4d990f4226db",
+      "patch": "families__qwen__runtime__CMakeLists.txt.patch"
+    },
+    {
+      "path": "families/qwen/runtime/chat_templates.cpp",
+      "beforeSha256": "8b13fc651475b411b50a3f40ae3a1a6749f5c81bbefeae80686beeef642f088d",
+      "afterSha256": "5ffdc137f9ed492c7fecfbde6bb0536043441686b667069f4744d05b55832560",
+      "patch": "families__qwen__runtime__chat_templates.cpp.patch"
+    },
+    {
+      "path": "families/qwen/runtime/distributed_runtime.cpp",
+      "beforeSha256": "960d478157e0dab4b4af30ff2f4fe6b5474351b3416050bcb791c89192a811ec",
+      "afterSha256": "8c793b2aacac80ed1f8cfc1db5baad6f06e655b461e5ed59b9ef509c73dc24dc",
+      "patch": "families__qwen__runtime__distributed_runtime.cpp.patch"
+    },
+    {
+      "path": "families/qwen_vl/model.py",
+      "beforeSha256": "e8f6dd50111d7ea6052f36354ae89b744d5e5892472536a0083b0d972f387d26",
+      "afterSha256": "7cdea622ceb4ca3711f248639a80a6bb7c028b8bd5cb34cf51ed1dc21ce7e61d",
+      "patch": "families__qwen_vl__model.py.patch"
+    },
+    {
+      "path": "families/qwen_vl/runtime/pipeline.cpp",
+      "beforeSha256": "f75ae7eb1a71ba9b74c2c3a815e89343bc359f8685eb1526258b90229937c6e8",
+      "afterSha256": "7b77a9ec309305e1ce6f1e7cfef15b8bfeb0bab57c6e8f1abc44dec1b35dcba2",
+      "patch": "families__qwen_vl__runtime__pipeline.cpp.patch"
+    },
+    {
+      "path": "families/sam/runtime/CMakeLists.txt",
+      "beforeSha256": "3e8d4dfd4601cdd17be9eac28faa30b706628a97dd64f8d179494d4ad9fca5ff",
+      "afterSha256": "0cb28ad58d5d0ac0f0994f2e7d320cc08cacb38cf1ae1d0991e4675f3bf4bc11",
+      "patch": "families__sam__runtime__CMakeLists.txt.patch"
+    },
+    {
+      "path": "families/sam/runtime/distributed_runtime.cpp",
+      "beforeSha256": "ac9f1122dfc35767622c39ba29a0f26bf99ce7527b2ff29344480d7902aa1ab6",
+      "afterSha256": "2cf5926a7dd2b8deb23d3be1dd30e31ecc746f1fd6b86db256115aed83e31f86",
+      "patch": "families__sam__runtime__distributed_runtime.cpp.patch"
+    },
+    {
+      "path": "families/whisper/runtime/CMakeLists.txt",
+      "beforeSha256": "55d4ef256f7b68c4d8baebf53a0fc98358f772dac8392ccaa23918a9b99c823f",
+      "afterSha256": "20978330dd74d640e96d4932e5bae6f5591c6c056396a7142ad16cbb53ef9b8e",
+      "patch": "families__whisper__runtime__CMakeLists.txt.patch"
+    },
+    {
+      "path": "families/whisper/runtime/distributed_runtime.cpp",
+      "beforeSha256": "bd39ba6015af2c775b474b5f9a55cb74db0032aaeff91e231b0e073145144834",
+      "afterSha256": "d5be3f7e51487c01fe1f532bb43b116087de3cab4e6c354ae0468e1a2f490093",
+      "patch": "families__whisper__runtime__distributed_runtime.cpp.patch"
+    },
+    {
+      "path": "families/whisper/runtime/pipeline.cpp",
+      "beforeSha256": "3a342e3b35488780f3812c30a512c939b45d692cc9055ce5c38972d95bb16c2a",
+      "afterSha256": "ed4580c2dc277a5b1fdf68181324148c6d4609c86d3b649b352001badb47a8d7",
+      "patch": "families__whisper__runtime__pipeline.cpp.patch"
+    }
+  ]
+}

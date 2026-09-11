@@ -1,0 +1,6 @@
+{
+  "file": "families/qwen_vl/model.py",
+  "beforeSha256": "e8f6dd50111d7ea6052f36354ae89b744d5e5892472536a0083b0d972f387d26",
+  "afterSha256": "7cdea622ceb4ca3711f248639a80a6bb7c028b8bd5cb34cf51ed1dc21ce7e61d",
+  "reason": "Read Qwen3-VL RGB normalization from pinned checkpoint preprocessor_config.json instead of earlier-model hardcoded CLIP mean/std."
+}
