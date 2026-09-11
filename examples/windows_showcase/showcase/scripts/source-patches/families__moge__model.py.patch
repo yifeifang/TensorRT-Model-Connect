@@ -1,0 +1,49 @@
+--- a/families/moge/model.py
++++ b/families/moge/model.py
+@@ -693,7 +693,27 @@
+             k = self.cast(k, self.trt.float16, f"{name}.k_fp16")
+             v = self.cast(v, self.trt.float16, f"{name}.v_fp16")
+         add_attention_v2 = getattr(self.network, "add_attention_v2", None)
+-        if callable(add_attention_v2):
++        if not self.fast_path:
++            # Keep the FP32 qualification path explicit. RTX may select fused
++            # attention math even when IAttention is marked decomposable.
++            scores = self._layer(
++                self.network.add_matrix_multiply(
++                    q, self.trt.MatrixOperation.NONE, k, self.trt.MatrixOperation.TRANSPOSE
++                ),
++                "FP32 attention scores",
++                f"{name}.scores",
++            ).get_output(0)
++            probabilities = self._layer(self.network.add_softmax(scores), "softmax", f"{name}.softmax")
++            probabilities.axes = 1 << 3
++            attention = self._layer(
++                self.network.add_matrix_multiply(
++                    probabilities.get_output(0), self.trt.MatrixOperation.NONE,
++                    v, self.trt.MatrixOperation.NONE,
++                ),
++                "FP32 attention context",
++                f"{name}.weighted_values",
++            )
++        elif callable(add_attention_v2):
+             layer = add_attention_v2(
+                 q,
+                 k,
+@@ -705,11 +725,12 @@
+             layer = self.network.add_attention(
+                 q, k, v, self.trt.AttentionNormalizationOp.SOFTMAX, False
+             )
+-        attention = self._layer(layer, "IAttention", name)
+-        attention.decomposable = not self.fast_path
+-        if hasattr(attention, "query_form"):
+-            attention.query_form = self.trt.AttentionIOForm.PADDED_BHND
+-            attention.key_value_form = self.trt.AttentionIOForm.PADDED_BHND
++        if self.fast_path:
++            attention = self._layer(layer, "IAttention", name)
++            attention.decomposable = False
++            if hasattr(attention, "query_form"):
++                attention.query_form = self.trt.AttentionIOForm.PADDED_BHND
++                attention.key_value_form = self.trt.AttentionIOForm.PADDED_BHND
+         context_shape = self.shape_concat(
+             [
+                 self.shape_value(1, f"{name}.context_batch"),

@@ -1,0 +1,13 @@
+--- a/families/qwen_vl/runtime/pipeline.cpp
++++ b/families/qwen_vl/runtime/pipeline.cpp
+@@ -617,7 +617,9 @@
+ 
+     std::vector<int32_t> new_tokens(out.begin() + static_cast<std::ptrdiff_t>(input_ids.size()),
+                                     out.end());
+-    auto result = TextResult{tokenizer_->decode(new_tokens), std::move(new_tokens)};
++    // Decode before moving: MSVC may otherwise construct the token vector first.
++    std::string text = tokenizer_->decode(new_tokens);
++    auto result = TextResult{std::move(text), std::move(new_tokens)};
+     result.setup_ms = last_setup_ms_;
+     return result;
+ }

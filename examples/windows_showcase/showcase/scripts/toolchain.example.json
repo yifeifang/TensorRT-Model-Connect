@@ -1,0 +1,9 @@
+{
+  "SourceRoot": "../../vendor/ModelConnect",
+  "PythonExe": "C:/Tools/modelconnect-python/Scripts/python.exe",
+  "CMakeExe": "C:/Tools/CMake/bin/cmake.exe",
+  "NinjaExe": "C:/Tools/Ninja/ninja.exe",
+  "CudaRoot": "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.4",
+  "TensorRtRtxRoot": "C:/Tools/TensorRT-RTX-1.6.1.120",
+  "JsonRoot": "C:/Tools/nlohmann-json/install"
+}

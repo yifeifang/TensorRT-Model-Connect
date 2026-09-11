@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-11",
+  "scope": "Seven showcase checkpoint families and one separately acquired voice tokenizer. Runtime/dependency licenses are reviewed separately. This inventory is a source release policy, not a legal warranty.",
+  "models": [
+    {
+      "id": "asr",
+      "repository": "openai/whisper-small",
+      "revision": "973afd24965f72e36ca33b3055d56a652f456b4d",
+      "license": "Apache-2.0",
+      "upstreamOriginalLicense": "MIT",
+      "licenseUrl": "https://github.com/openai/whisper/blob/main/LICENSE",
+      "localProvenance": "models/Whisper-small/.cache/huggingface/download/*.metadata",
+      "conditions": [
+        "The pinned Hugging Face card declares Apache-2.0; the original Whisper repository declares MIT for code and weights. Preserve both notices for this converted artifact; do not represent these different declarations as an optional dual-license grant.",
+        "Retain MIT copyright/permission notice and Apache-2.0 license, attribution, any applicable NOTICE, and modification notices."
+      ],
+      "modelCardUrl": "https://huggingface.co/openai/whisper-small/blob/973afd24965f72e36ca33b3055d56a652f456b4d/README.md",
+      "defaultDelivery": "user-download-and-local-build",
+      "shipCheckpoint": false,
+      "shipCompiledBundle": false,
+      "redistributionAssessment": "permitted-subject-to-notices-and-license-conditions"
+    },
+    {
+      "id": "text",
+      "repository": "Qwen/Qwen3-4B",
+      "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://huggingface.co/Qwen/Qwen3-4B/blob/1cfa9a7208912126459214e8b04321603b3df60c/LICENSE",
+      "localProvenance": "models/Qwen3-4B/.cache/huggingface/download/*.metadata",
+      "conditions": [
+        "Retain license, copyright, attribution and any applicable NOTICE; mark modifications."
+      ],
+      "modelCardUrl": "https://huggingface.co/Qwen/Qwen3-4B/blob/1cfa9a7208912126459214e8b04321603b3df60c/README.md",
+      "defaultDelivery": "user-download-and-local-build",
+      "shipCheckpoint": false,
+      "shipCompiledBundle": false,
+      "redistributionAssessment": "permitted-subject-to-notices-and-license-conditions"
+    },
+    {
+      "id": "embedding",
+      "repository": "intfloat/multilingual-e5-small",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "license": "MIT",
+      "licenseUrl": "https://huggingface.co/intfloat/multilingual-e5-small/blob/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md",
+      "localProvenance": "models/e5-small-download.json",
+      "conditions": [
+        "Model card declares MIT; retain card provenance and copyright/permission notices available from the owner. No standalone model LICENSE was present in the downloaded snapshot."
+      ],
+      "modelCardUrl": "https://huggingface.co/intfloat/multilingual-e5-small/blob/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md",
+      "defaultDelivery": "user-download-and-local-build",
+      "shipCheckpoint": false,
+      "shipCompiledBundle": false,
+      "redistributionAssessment": "permitted-subject-to-notices-and-license-conditions"
+    },
+    {
+      "id": "vision",
+      "repository": "facebook/sam-vit-base",
+      "revision": "70c1a07f894ebb5b307fd9eaaee97b9dfc16068f",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/facebookresearch/segment-anything/blob/main/LICENSE",
+      "localProvenance": "showcase/scripts/download-vision-model.py",
+      "conditions": [
+        "Retain license, copyright, attribution and any applicable NOTICE; mark modifications.",
+        "SAM image dataset terms are separate; no SA-1B dataset is included."
+      ],
+      "modelCardUrl": "https://huggingface.co/facebook/sam-vit-base/blob/70c1a07f894ebb5b307fd9eaaee97b9dfc16068f/README.md",
+      "defaultDelivery": "user-download-and-local-build",
+      "shipCheckpoint": false,
+      "shipCompiledBundle": false,
+      "redistributionAssessment": "permitted-subject-to-notices-and-license-conditions"
+    },
+    {
+      "id": "understanding",
+      "repository": "Qwen/Qwen3-VL-2B-Instruct",
+      "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+      "localProvenance": "showcase/understanding-native/checkpoint-provenance.json",
+      "conditions": [
+        "Retain license, copyright, attribution and any applicable NOTICE; mark modifications."
+      ],
+      "modelCardUrl": "https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct/blob/89644892e4d85e24eaac8bacfd4f463576704203/README.md",
+      "defaultDelivery": "user-download-and-local-build",
+      "shipCheckpoint": false,
+      "shipCompiledBundle": false,
+      "redistributionAssessment": "permitted-subject-to-notices-and-license-conditions"
+    },
+    {
+      "id": "geometry",
+      "repository": "Ruicheng/moge-2-vitl",
+      "revision": "39c4d5e957afe587e04eec59dc2bcc3be5ecd968",
+      "license": "MIT",
+      "licenseUrl": "https://huggingface.co/Ruicheng/moge-2-vitl/blob/39c4d5e957afe587e04eec59dc2bcc3be5ecd968/README.md",
+      "localProvenance": "showcase/geometry-native/provenance.json",
+      "conditions": [
+        "Model card declares MIT; retain card provenance and copyright/permission notices.",
+        "Reference source microsoft/MoGe@74fbce054ebed49800de42d0ad0e83495065719a includes MIT and separately attributed Apache-2.0 DINOv2 code; retain both if distributing that code.",
+        "The source repository license alone did not establish separate photograph rights for geometry-house.jpg."
+      ],
+      "modelCardUrl": "https://huggingface.co/Ruicheng/moge-2-vitl/blob/39c4d5e957afe587e04eec59dc2bcc3be5ecd968/README.md",
+      "defaultDelivery": "user-download-and-local-build",
+      "shipCheckpoint": false,
+      "shipCompiledBundle": false,
+      "redistributionAssessment": "permitted-subject-to-notices-and-license-conditions"
+    },
+    {
+      "id": "voice",
+      "repository": "nvidia/NVIDIA-NemotronLabs-VoiceChat-11B",
+      "revision": "359ada7b1c60851e40ff08065f9b0340244f27e0",
+      "license": "OpenMDW-1.1",
+      "licenseUrl": "https://github.com/OpenMDW/OpenMDW/blob/main/1.1/LICENSE.OpenMDW-1.1",
+      "localProvenance": "vendor/ModelConnect/families/nemotron_voicechat/tests/manifests/nemotron-voicechat-11b.json",
+      "conditions": [
+        "Retain OpenMDW-1.1 agreement and applicable copyright/origin notices with redistributed materials.",
+        "Voice also incorporates separately acquired tokenizer assets; see voice-tokenizer.",
+        "Existing shared compiled bundle was reused; the family pin is not a complete new chain-of-custody proof for every byte of that historical bundle. Rebuild for external distribution."
+      ],
+      "modelCardUrl": "https://huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B/blob/359ada7b1c60851e40ff08065f9b0340244f27e0/README.md",
+      "defaultDelivery": "user-download-and-local-build",
+      "shipCheckpoint": false,
+      "shipCompiledBundle": false,
+      "redistributionAssessment": "permitted-subject-to-notices-and-license-conditions"
+    },
+    {
+      "id": "voice-tokenizer",
+      "repository": "nvidia/NVIDIA-Nemotron-Nano-9B-v2",
+      "revision": "6533e8de2c68e4536bf7c411d7a3ce5734111476",
+      "license": "LicenseRef-NVIDIA-Open-Model-License",
+      "licenseUrl": "https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-open-model-license/",
+      "localProvenance": "vendor/ModelConnect/families/nemotron_voicechat/model.py",
+      "scope": "tokenizer.json, tokenizer_config.json, special_tokens_map.json only; no separate Nano-9B weights downloaded by the voice builder",
+      "conditions": [
+        "Retain full agreement plus Notice: Licensed by NVIDIA Corporation under the NVIDIA Open Model License",
+        "Comply with incorporated Trustworthy AI terms, guardrail, separate-component and trade conditions.",
+        "Linked agreement inspected September 11, 2026 states last modified October 24, 2025. The model pin does not pin this external legal page."
+      ],
+      "modelCardUrl": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2/blob/6533e8de2c68e4536bf7c411d7a3ce5734111476/README.md",
+      "defaultDelivery": "user-download-and-local-build",
+      "shipCheckpoint": false,
+      "shipCompiledBundle": false,
+      "redistributionAssessment": "conditional-custom-license"
+    }
+  ]
+}

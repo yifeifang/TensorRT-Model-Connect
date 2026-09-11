@@ -1,0 +1,14 @@
+# Local authoring environment; these packages are never bundled in the source PR.
+# TensorRT-RTX and CUDA bindings have their own terms; review before installing.
+tensorrt-rtx==1.6.1.120
+cuda-python==13.4.1
+numpy==2.5.3
+ml_dtypes==0.6.0
+safetensors==0.8.0
+huggingface_hub==1.30.0
+httpx==0.28.1
+sentencepiece==0.2.2
+transformers==5.2.0
+Pillow==12.1.1
+scipy==1.17.1
+PyYAML==6.0.3

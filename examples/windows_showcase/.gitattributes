@@ -1,0 +1,4 @@
+* text=auto eol=lf
+*.wav -text
+# Unified diffs intentionally contain a single space on empty context lines.
+*.patch -whitespace

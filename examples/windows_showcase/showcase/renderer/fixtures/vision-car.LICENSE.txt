@@ -1,0 +1,13 @@
+ModelConnect SAM demonstration photograph
+
+File: vision-car.jpeg
+Original: vendor/ModelConnect/families/sam/tests/data/test_img.jpeg
+Upstream project: https://github.com/NVIDIA/TensorRT-Model-Connect
+License: Apache License 2.0
+License URL: https://www.apache.org/licenses/LICENSE-2.0
+
+The ModelConnect repository's ASSET_LICENSES.md, section "Shared vehicle test
+photograph", records that the project maintainer took this original photograph
+and authorized its inclusion and redistribution under Apache License 2.0. This
+file is a byte-identical copy of that fixture. No segmentation result is stored
+with this input image; the application calls ModelConnect SAM for every result.

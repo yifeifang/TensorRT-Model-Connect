@@ -1,0 +1,27 @@
+--- a/families/sam/runtime/distributed_runtime.cpp
++++ b/families/sam/runtime/distributed_runtime.cpp
+@@ -5,6 +5,18 @@
+ 
+ #include "families/sam/runtime/distributed_runtime.h"
+ 
++#ifdef _WIN32
++#include <stdexcept>
++namespace trtmc::sam {
++DistributedRuntimeGroup initialize_tensor_parallel_group(int tp_size) {
++    if (tp_size != 1)
++        throw std::runtime_error("SAM on Windows supports only single-GPU execution");
++    DistributedRuntimeGroup group;
++    group.tp_size = tp_size;
++    return group;
++}
++} // namespace trtmc::sam
++#else
+ #include <chrono>
+ #include <cstdlib>
+ #include <cuda_runtime_api.h>
+@@ -203,3 +215,5 @@
+ }
+ 
+ } // namespace trtmc::sam
++
++#endif

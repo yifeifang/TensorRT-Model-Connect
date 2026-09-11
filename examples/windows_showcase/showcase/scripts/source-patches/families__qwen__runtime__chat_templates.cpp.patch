@@ -1,0 +1,31 @@
+--- a/families/qwen/runtime/chat_templates.cpp
++++ b/families/qwen/runtime/chat_templates.cpp
+@@ -22,8 +22,14 @@
+ std::string qwen_detect_chat_template_format(const std::string& jinja_template) {
+     if (jinja_template.empty())
+         return {};
+-    if (jinja_template.find("<|im_start|>") != std::string::npos)
+-        return "chatml";
++    if (jinja_template.find("<|im_start|>") != std::string::npos) {
++        // Only hybrid checkpoints define the thinking-control suffix. Dedicated
++        // Instruct checkpoints use plain ChatML even when thinking is disabled.
++        return jinja_template.find("enable_thinking") != std::string::npos &&
++                       jinja_template.find("<think>") != std::string::npos
++                   ? "chatml_thinking"
++                   : "chatml";
++    }
+     return {};
+ }
+ 
+@@ -31,8 +37,10 @@
+                                      bool enable_thinking) {
+     if (format.empty())
+         return prompt;
++    if (format == "chatml_thinking")
++        return apply_chatml(prompt, enable_thinking);
+     if (format == "chatml")
+-        return apply_chatml(prompt, enable_thinking);
++        return apply_chatml(prompt, true);
+     return prompt;
+ }
+ 

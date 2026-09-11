@@ -1,0 +1,32 @@
+--- a/families/sam/runtime/CMakeLists.txt
++++ b/families/sam/runtime/CMakeLists.txt
+@@ -22,10 +22,7 @@
+   ${TRTMC_CUDART_LIBRARY}
+   ${CMAKE_DL_LIBS}
+ )
+-target_compile_options(trtmc_model_sam PRIVATE
+-  "$<$<COMPILE_LANGUAGE:CXX>:-Wall;-Wextra;-Wpedantic>"
+-  "$<$<COMPILE_LANGUAGE:CUDA>:-Wall;-Wextra>"
+-)
++target_compile_options(trtmc_model_sam PRIVATE ${TRTMC_CXX_WARNINGS})
+ set_target_properties(trtmc_model_sam PROPERTIES
+   LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
+   BUILD_RPATH "\$ORIGIN"
+@@ -33,6 +30,8 @@
+ )
+ install(TARGETS trtmc_model_sam
+   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
++  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+ )
+ 
+ if(TRTMC_BUILD_TESTS)
+@@ -47,7 +46,7 @@
+     trtmc_model_sam
+   )
+   target_compile_options(test_sam_prompt_seam PRIVATE
+-    -Wall -Wextra -Wpedantic
++    ${TRTMC_CXX_WARNINGS}
+   )
+   add_test(NAME sam_prompt_seam COMMAND test_sam_prompt_seam)
+ endif()

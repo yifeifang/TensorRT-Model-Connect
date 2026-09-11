@@ -1,0 +1,34 @@
+--- a/families/qwen_vl/model.py
++++ b/families/qwen_vl/model.py
+@@ -358,6 +358,20 @@
+                 "<|im_start|>assistant\n"
+             )
+ 
++        # Qwen3-VL owns a different normalization from earlier Qwen-VL
++        # checkpoints. Preserve its pinned processor metadata in the bundle.
++        image_mean = [0.48145466, 0.4578275, 0.40821073]
++        image_std = [0.26862954, 0.26130258, 0.27577711]
++        if _is_qwen3_vl(config):
++            processor_path = Path(config.raw["_model_dir"]) / "preprocessor_config.json"
++            processor = json.loads(processor_path.read_text(encoding="utf-8"))
++            image_mean = processor["image_mean"]
++            image_std = processor["image_std"]
++            if (len(image_mean) != 3 or len(image_std) != 3
++                or not all(np.isfinite(value) for value in image_mean + image_std)
++                or not all(value > 0 for value in image_std)):
++                raise ValueError("Qwen3-VL processor requires finite RGB means and positive standard deviations")
++
+         vl_cfg = {
+             "image_token_id": 151655,
+             "fixed_image_size": _DEFAULT_FIXED_IMAGE_SIZE,
+@@ -370,8 +384,8 @@
+             "dynamic_image_resolution": dynamic_resolution,
+             "vision_output_dim": config.hidden_size,
+             "preprocessor_type": preproc,
+-            "image_mean": [0.48145466, 0.4578275, 0.40821073],
+-            "image_std": [0.26862954, 0.26130258, 0.27577711],
++            "image_mean": image_mean,
++            "image_std": image_std,
+             "interpolation": "bicubic",
+             "vl_prompt_template": prompt_template,
+             "image_token_str": "<|image_pad|>",

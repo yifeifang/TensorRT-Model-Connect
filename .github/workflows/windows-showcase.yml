@@ -1,0 +1,39 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+name: Windows showcase source checks
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'examples/windows_showcase/**'
+      - '.github/workflows/windows-showcase.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-and-contracts:
+    runs-on: windows-2025
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: examples/windows_showcase
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Check application contracts
+        run: node --test showcase/tests/*.test.cjs
+      - name: Check source distribution boundaries
+        run: |
+          node --test showcase/distribution/source-release.test.cjs
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          node showcase/distribution/source-release.cjs
+      - name: Inspect desktop installation plan
+        run: ./showcase/scripts/install-shell.ps1 -Plan
